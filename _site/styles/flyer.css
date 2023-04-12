@@ -1,0 +1,1 @@
+﻿header{text-align:center;margin-bottom:1.5em}header div h2,header div h3{display:inline;font-size:1em}header div h3::before{content:"• "}#content{column-count:2}#content section{break-inside:avoid-column}

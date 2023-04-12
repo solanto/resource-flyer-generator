@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/styles/main.css">
+  </head>
+  <body>
+    <h1>Flyer generator</h1>
+    <section>
+      <h2>Configuration</h2>
+      <section>
+        <h3>Raw data</h3>
+        <pre>{{ config | json }}</pre>
+        {% edge %}
+        <pre>{{ eleventy.edge.query | json }}</pre>
+        {% endedge %}
+      </section>
+      <section>
+        <h3>User configuration</h3>
+        <form action="" method="GET">
+          <label for="address">Address</label>
+          <input
+            name="address"
+            id="address"
+            value="{% edge "liquid" config %}{{ eleventy.edge.query.address | url_decode | escape | default: address }}{% endedge %}">
+          <button>Go!</button>
+        </form>
+      </section>
+    </section>
+    <h2>Output</h2>
+    <article>
+      <iframe src="flyer/?address={% edge "liquid" config %}{{ eleventy.edge.query.address | url_decode | escape | default: address }}{% endedge %}"></iframe>
+    </article>
+  </body>
+</html>

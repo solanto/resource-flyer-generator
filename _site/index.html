@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/styles/main.css">
+  </head>
+  <body>
+    <h1>Flyer generator</h1>
+    <section>
+      <h2>Configuration</h2>
+      <section>
+        <h3>Raw data</h3>
+        <pre>{"timestamp":"2023-04-05T17:30:00.000Z","address":"3100 Wyman Park Dr, Baltimore, MD 21211","recovery centers":[{"name":"Maryland Behavioral Health Services","tel":"4104028200","address":"3333 N. Calvert St."},{"name":"High Hopes","tel":"4104350469","address":"415 E 33rd St."},{"name":"Weisman House","tel":"4102330684","address":"2523 Maryland Ave."}],"nep":{"name":"Maryland & 21st, Druid Hill Clinic (Side Lot)","hours":"Tuesdays 10:30am–11:30pm"},"naloxone":{"name":"CVS","address":"3200 St. Paul St."},"fentanyl testing":{"name":"Project Connections @ Behavioral Health Leadership Institute, Inc.","tel":"4436833498","address":"2601 N Howard Street"},"naloxone by mail":{"name":"Baltimore Harm Reduction Coalition","tel":"4102055143","address":"116 E. 25th St."}}</pre>
+        <!--ELEVENTYEDGE_edge "liquid" %}
+        <pre>{{ eleventy.edge.query | json }}</pre>
+        ELEVENTYEDGE_edge-->
+      </section>
+      <section>
+        <h3>User configuration</h3>
+        <form action="" method="GET">
+          <label for="address">Address</label>
+          <input
+            name="address"
+            id="address"
+            value="<!--ELEVENTYEDGE_edge "liquid" ELEVENTYEDGEDATA_697a3d6d6d8c43a8a83de3e2dac5da2cb3c51891862adabac56062522e4798ef %}{{ eleventy.edge.query.address | url_decode | escape | default: address }}ELEVENTYEDGE_edge-->">
+          <button>Go!</button>
+        </form>
+      </section>
+    </section>
+    <h2>Output</h2>
+    <article>
+      <iframe src="flyer/?address=<!--ELEVENTYEDGE_edge "liquid" ELEVENTYEDGEDATA_697a3d6d6d8c43a8a83de3e2dac5da2cb3c51891862adabac56062522e4798ef %}{{ eleventy.edge.query.address | url_decode | escape | default: address }}ELEVENTYEDGE_edge-->"></iframe>
+    </article>
+  </body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/styles/flyer.css">
+  </head>
+  <body>
+    <header>
+      <hgroup>
+        <h1>Nearby Harm Reduction Resources</h1>
+        <div>
+          <h2>For Baltimoreans With Opioid Addictions</h2>
+          <h3>Updated {{ config.timestamp | date: "%B %e, %Y" }}</h3>
+        </div>
+      </hgroup>
+    </header>
+    <div id="content">
+      <section>
+        <h2>About this flyer</h2>
+        <p>
+          This flyer is specific to the location it was printed for:
+          <strong>{% edge "liquid" config %}{{ eleventy.edge.query.address | url_decode | escape | default: address }}{% endedge %}</strong>.
+        </p>
+        <p>
+          The information listed was last updated
+          <strong>{{ config.timestamp | date: "%B %e, %Y" }}</strong>.
+          To get an up-to-date, interactive version: scan the code or type the link below into your browser.
+        </p>
+        <aside>(insert link & qr code)</aside>
+      </section>
+      <section>
+        <h2>Recovery centers</h2>
+        <p>
+          Sorted by distance. All within
+          <strong>15 minutes by bus</strong>
+          from here.
+        </p>
+        <ol>
+          {% for center in config["recovery centers"] %}
+            <li>
+              <h3>{{ center.name }}</h3>
+              <dl>
+                <dt>Telephone</dt>
+                <dd>{{ center.tel }}</dd>
+                <dt>Address</dt>
+                <dd>{{ center.address }}</dd>
+              </dl>
+            </li>
+          {% endfor %}
+        </ol>
+      </section>
+      <section>
+        <h2>24/7 hotlines</h2>
+        <ol>
+          <li>
+            Call
+            <strong>211</strong>
+            for free counseling, treatment programs, free info on mental health, legal services, & more.
+          </li>
+          <li>
+            Text
+            <strong>MDMINDHEALTH</strong>
+            to
+            <strong>898211</strong>
+            for mental health or substance use disorder (SUD) needs.
+          </li>
+          <li>
+            Call
+            <strong>866 210 1303</strong>
+            for the National Rehab Hotline, where accredited specialists will help you through an SUD or mental health crisis.
+          </li>
+        </ol>
+      </section>
+      <section>
+        <h2>Needle exchange</h2>
+        <p>
+          The Baltimore City Health Department’s Needle Exchange Program operates many locations throughout the week. The closest location is
+          <strong>Maryland & 21st, Druid Hill Clinic (Side Lot)</strong>, open
+          <strong>Tuesdays 10:30am–11:30pm</strong>.
+        </p>
+        <p>
+          Learn about more locations and their hours at
+          <a href="health.baltimorecity.gov/hiv-std-services/community-risk-reduction">
+            health.baltimorecity.gov/hiv-std-services/community-risk-reduction
+          </a>.
+        </p>
+      </section>
+      <section>
+        <h2>Fentanyl test strips & naloxone (Narcan)</h2>
+        <p>
+          Naloxone (Narcan) can be purchased
+          <strong>with no prescription</strong>
+          at any pharmacy that carries it. The nearest pharmacy that carries naloxone is
+          <strong>{{ config.naloxone.name }} at {{ config.naloxone.address }}</strong>
+          .
+        </p>
+        <p>
+          Many Overdose Response Program (ORP) locations offer
+          <strong>fentanyl test strips</strong>.
+          The nearest location that offers them is
+          <strong>
+            {{ config["fentanyl testing"].name }}
+            at
+            {{ config["fentanyl testing"].address }}
+            ({{ config["fentanyl testing"].tel }})
+          </strong>.
+        </p>
+        <p>
+          Some ORP locations offer
+          <strong>free naloxone by mail</strong>.
+          The nearest location that offers this is
+          <strong>
+            {{ config["naloxone by mail"].name }}
+            at
+            {{ config["naloxone by mail"].address }}
+            ({{ config["naloxone by mail"].tel }})
+          </strong>.
+        </p>
+        <p>
+          See more info and access an
+          <strong>ORP finder</strong>
+          at
+          <a href="health.maryland.gov/pha/NALOXONE/Pages/Approved-Entities.aspx">
+            health.maryland.gov/pha/NALOXONE/Pages/Approved-Entities.aspx
+          </a>
+        </p>
+      </section>
+    </div>
+  </body>
+</html>
